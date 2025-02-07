@@ -1,6 +1,6 @@
 ![Image](/assets/poster.webp)
 
-С помощью этого скрипта [IMDb](https://www.imdb.com/), [TMDb](https://www.themoviedb.org/), [Кинопоиск](https://www.kinopoisk.ru/), [Letterboxd](https://letterboxd.com/) & [Serializd](https://www.serializd.com/) станут бесплатными онлайн-кинотеатрами! На каждой странице с фильмом или сериалом в левом верхнем углу появится флажок. Нажав на него, вы откроете плеер с фильмом.
+С помощью этого скрипта [Кинопоиск](https://www.kinopoisk.ru/), [IMDb](https://www.imdb.com/), [TMDb](https://www.themoviedb.org/), [Letterboxd](https://letterboxd.com/) & [Serializd](https://www.serializd.com/) и [FlickFocus](https://flickfocus.com/) станут бесплатными онлайн-кинотеатрами! На каждой странице с фильмом или сериалом в левом верхнем углу появится флажок. Нажав на него, вы откроете плеер с фильмом.
 
 **RUS** | [ENG](README.eng.md)
 
