@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name            Tape Operator with Serializd
+// @name            Tape Operator+
 // @namespace       tape-operator
-// @author          Kirlovon
-// @description     Watch movies on IMDb, TMDb, Кинопоиск, Letterboxd & Serializd!
-// @version         3.2.0
+// @author          X-49
+// @description     Watch movies on IMDb, TMDb, Kinopoisk, Letterboxd & Serializd, FlickFocus and more!
+// @version         experimental
 // @icon            https://github.com/Kirlovon/Tape-Operator/raw/main/assets/favicon.png
 // @updateURL       https://github.com/Kirlovon/Tape-Operator/raw/main/userscript/tape-operator.user.js
 // @downloadURL     https://github.com/Kirlovon/Tape-Operator/raw/main/userscript/tape-operator.user.js
@@ -20,6 +20,8 @@
 // @match           *://www.themoviedb.org/tv/*
 // @match           *://letterboxd.com/film/*
 // @match           *://www.serializd.com/show/*
+// @match           *://flickfocus.com/movies/*
+// @match           *://flickfocus.com/shows/*
 // @match           *://tapeop.dev/*
 // ==/UserScript==
 
@@ -43,12 +45,14 @@
   const TMDB_MATCHER = /themoviedb\.org\/(movie|tv)\/\.*/;
   const LETTERBOXD_MATCHER = /letterboxd\.com\/film\/\.*/;
   const SERIALIZD_MATCHER = /serializd\.com\/show\/\.*/;
+  const FLICKFOCUS_MATCHER = /flickfocus\.com\/(movies|shows)\/\.*/;
   const MATCHERS = [
     KINOPOISK_MATCHER,
     IMDB_MATCHER,
     TMDB_MATCHER,
     LETTERBOXD_MATCHER,
     SERIALIZD_MATCHER,
+    FLICKFOCUS_MATCHER,
   ];
 
   // Logging utility
@@ -119,14 +123,6 @@
       return { tmdb: id, title };
     }
 
-    // TMDb ID from Serializd
-    if (url.match(SERIALIZD_MATCHER)) {
-      const slug = url.split("/").at(4);
-      const parts = slug.split("-");
-      const id = parts[parts.length - 1];
-      return { tmdb: id, title };
-    }
-
     // IMDb ID from Letterboxd
     if (url.match(LETTERBOXD_MATCHER)) {
       const elements = document.querySelectorAll("a");
@@ -148,6 +144,31 @@
       if (tmdbLink) {
         const tmdbId = tmdbLink.href.split("/").at(4)?.split("-")?.at(0);
         if (tmdbId) return { tmdbId: tmdbId, title };
+      }
+
+      return null;
+    }
+
+    // TMDb ID from Serializd
+    if (url.match(SERIALIZD_MATCHER)) {
+      const slug = url.split("/").at(4);
+      const parts = slug.split("-");
+      const id = parts[parts.length - 1];
+      return { tmdb: id, title };
+    }
+
+    // IMDb ID from FlickFocus
+    if (url.match(FLICKFOCUS_MATCHER)) {
+      const elements = document.querySelectorAll("a");
+      const elementsArray = Array.from(elements);
+
+      // Find IMDb ID
+      const imdbLink = elementsArray.find((link) =>
+        link?.href?.match(IMDB_MATCHER),
+      );
+      if (imdbLink) {
+        const imdbId = imdbLink.href.split("/").at(4);
+        if (imdbId) return { imdb: imdbId, title };
       }
 
       return null;
