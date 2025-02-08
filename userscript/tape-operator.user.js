@@ -1,12 +1,12 @@
 // ==UserScript==
 // @name            Tape Operator+
 // @namespace       tape-operator
-// @author          X-49
+// @author          Kirlovon & X-49
 // @description     Watch movies on IMDb, TMDb, Kinopoisk, Letterboxd & Serializd, FlickFocus and more!
-// @version         experimental
+// @version         dev
 // @icon            https://github.com/Kirlovon/Tape-Operator/raw/main/assets/favicon.png
-// @updateURL       https://github.com/Kirlovon/Tape-Operator/raw/main/userscript/tape-operator.user.js
-// @downloadURL     https://github.com/Kirlovon/Tape-Operator/raw/main/userscript/tape-operator.user.js
+// @updateURL       https://github.com/X-49/Tape-Operator-Plus/raw/dev/userscript/tape-operator.user.js
+// @downloadURL     https://github.com/X-49/Tape-Operator-Plus/raw/dev/userscript/tape-operator.user.js
 // @run-at          document-idle
 // @grant           GM.info
 // @grant           GM.setValue
