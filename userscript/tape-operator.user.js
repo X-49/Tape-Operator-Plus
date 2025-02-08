@@ -22,6 +22,8 @@
 // @match           *://www.serializd.com/show/*
 // @match           *://flickfocus.com/movies/*
 // @match           *://flickfocus.com/shows/*
+// @match           *://www.playpilot.com/*/movie/*
+// @match           *://www.playpilot.com/*/show/*
 // @match           *://tapeop.dev/*
 // ==/UserScript==
 
@@ -46,6 +48,7 @@
   const LETTERBOXD_MATCHER = /letterboxd\.com\/film\/\.*/;
   const SERIALIZD_MATCHER = /serializd\.com\/show\/\.*/;
   const FLICKFOCUS_MATCHER = /flickfocus\.com\/(movies|shows)\/\.*/;
+  const PLAYPILOT_MATCHER = /playpilot\.com\/\w{2}\/(movie|show)\/.*/;
   const MATCHERS = [
     KINOPOISK_MATCHER,
     IMDB_MATCHER,
@@ -53,6 +56,7 @@
     LETTERBOXD_MATCHER,
     SERIALIZD_MATCHER,
     FLICKFOCUS_MATCHER,
+    PLAYPILOT_MATCHER,
   ];
 
   // Logging utility
@@ -157,8 +161,8 @@
       return { tmdb: id, title };
     }
 
-    // IMDb ID from FlickFocus
-    if (url.match(FLICKFOCUS_MATCHER)) {
+    // IMDb ID from FlickFocus & PlayPilot
+    if (url.match(FLICKFOCUS_MATCHER | PLAYPILOT_MATCHER)) {
       const elements = document.querySelectorAll("a");
       const elementsArray = Array.from(elements);
 
